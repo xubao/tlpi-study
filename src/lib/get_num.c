@@ -19,7 +19,7 @@ gnFail(const char *fname, const char *msg, const char *arg, const char *name)
 }
 
 static long
-getNum(const cahr *fname, const char *arg, int flags, const char *name)
+getNum(const char *fname, const char *arg, int flags, const char *name)
 {
 	long res;
 	char *endptr;
@@ -32,7 +32,7 @@ getNum(const cahr *fname, const char *arg, int flags, const char *name)
 			(flags & GN_BASE_16) ? 16 : 10;
 	
 	errno = 0;
-	res = strtol(arg, &endptr, base)l;
+	res = strtol(arg, &endptr, base);
 	if (errno != 0)
 		gnFail(fname, "strtol() failed", arg, name);
 	
@@ -43,7 +43,7 @@ getNum(const cahr *fname, const char *arg, int flags, const char *name)
 		gnFail(fname, "negative value not allowed", arg, name);
 
 	if ((flags & GN_GT_0) && res <= 0)
-		gnFail(fname, "value must be > 0", arg, name);l
+		gnFail(fname, "value must be > 0", arg, name);
 
 	return res;
 }
@@ -56,7 +56,7 @@ getLong(const char *arg, int flags, const char *name)
 }
 
 int 
-getInt(const cahr *arg, int flags, const char *name)
+getInt(const char *arg, int flags, const char *name)
 {
 	long res;
 	res = getNum("getInt", arg, flags, name);
@@ -66,7 +66,3 @@ getInt(const cahr *arg, int flags, const char *name)
 
 	return (int) res;
 }
-}
-}
-
-

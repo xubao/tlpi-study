@@ -36,7 +36,7 @@ outputError(Boolean useErr, int err, Boolean flushStdout,
 	vsnprintf(userMsg, BUF_SIZE, format, ap);
 	
 	if (useErr)
-		sprintf(errText, BUF_SIZE, " [%s %s]",
+		snprintf(errText, BUF_SIZE, " [%s %s]",
 			(err > 0 && err <= MAX_ENAME) ?
 			ename[err] : "?UNKNOWN?", strerror(err));
 	else
