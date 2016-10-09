@@ -37,24 +37,38 @@ int main(int argc, char *argv[])
 		usageErr("%s [-a] file\n", argv[0]);
 
 	append = 0;
-	while ((opt = getopt(argc, argv, "a")) != -1) {
+
+	/* Specify a colon(:) as the first charactger in optstring
+	   getopt() return ':' -> missing argument
+	            return '?' -> unrecognized option
+	   example : tee -b
+	 */
+	while ((opt = getopt(argc, argv, ":ab:")) != -1) {
 		printf("opt = %3d (%c); optind = %d", opt, printable(opt), optind);
 		if (opt == '?' || opt == ':')
-			printf("; optopt = %3d (%3c)", optopt, printable(optopt));
+			printf("; optopt = %3d (%c)", optopt, printable(optopt));
 		printf("\n");
 
 		switch (opt) {
-		case 'a': 
+		case 'a':
 			append = 1;
-			printf("get -a option\n");
 			break;
+		case 'b':
+			printf("-b option get.\n");
+			break;
+		case ':':
+			usageErr("%s, Missing argument, optopt(%c)\n", argv[0], optopt);
 		case '?':
+			usageErr("%s, Unrecognized option, optopt(%c)\n", argv[0], optopt);
 		default:
 			fatal("Unexpected case in switch");
 		}		
 	}
 	
-	file = argv[optind];
+	if (optind < argc)
+		file = argv[optind];
+	else
+		usageErr("%s [-a] file\n", argv[0]);
 	printf("file (argv[%d]) is %s\n", optind, file);
 
 	openFlags = append ? O_WRONLY | O_CREAT | O_APPEND : O_WRONLY | O_CREAT | O_TRUNC;
