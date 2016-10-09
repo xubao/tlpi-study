@@ -3,6 +3,8 @@
 #include <ctype.h>
 #include "tlpi_hdr.h"
 
+#define printable(ch) (isprint((unsigned char) ch) ? ch : '?')
+
 int main(int argc, char *argv[])
 {
 	size_t len;
@@ -42,7 +44,7 @@ int main(int argc, char *argv[])
 				printf("%s: ", argv[ap]);
 				for (j = 0; j < numRead; j++) {
 					if (argv[ap][0] == 'r')
-						printf("%c", (unsigned char) buf[j]);
+						printf("%c", printable(buf[j]));
 					else
 						printf("%02x ", (unsigned int) buf[j]);
 				}
