@@ -1,3 +1,27 @@
+/* Last updated: 2016.10.09 */
+
+/* seek_io.c
+   Demostarte the use of open(), read()，write() file I/O system calls
+
+   Usage: seek_io file {r<length>|R<length>|w<string>|s<offset>}...
+
+   This program opens the file named on its command line, and then performs
+   the file I/O operations specified by its remaining command-line arguments:
+
+           r<length>    Read 'length' bytes from the file at current
+                        file offset, displaying them as text.
+
+           R<length>    Read 'length' bytes from the file at current
+                        file offset, displaying them in hex.
+
+           w<string>    Write 'string' at current file offset.
+
+           s<offset>    Set the file offset to 'offset'.
+
+   Example:
+
+        seek_io tfile wabc s1000 r5
+*/
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <ctype.h>

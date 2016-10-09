@@ -1,3 +1,17 @@
+/* Last updated: 2016.10.09 */
+
+/* copy.c
+
+   An implemention of cp command. Use open(), read(), write() system calls.
+
+   Usage:
+	copy oldfile newfile
+
+   Example:
+	copy test test.bak
+	copy a.txt /dey/tty
+	copy /dey/tty b.txt
+*/
 #include <sys/stat.h>
 #include <fcntl.h>
 #include "tlpi_hdr.h"

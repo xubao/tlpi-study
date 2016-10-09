@@ -1,3 +1,20 @@
+/* Last updated: 2016.10.09 */
+
+/* tee.c
+
+   An implemention of the tee command.
+
+   The program writes a copy of standard input to standard output and
+   to the file named in its command-line argument.
+
+   The -a option causes tee to append text to the end of a file if it
+   already exits.
+
+   Usage: tee [-a] file
+
+   Example:
+	tee -a teefile
+*/
 #include <ctype.h>
 #include <fcntl.h>
 #include "tlpi_hdr.h"
